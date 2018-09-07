@@ -1,8 +1,11 @@
 function is_seq(seq)
-    local last = 0
+    local i = 0
     for k, _ in pairs(seq) do
-        last = k
+        i = i + 1
+        if k ~= i then
+            return false
+        end
     end
 
-    return last == #seq
+    return true
 end
