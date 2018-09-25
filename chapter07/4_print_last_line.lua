@@ -10,7 +10,6 @@ function print_last(path)
         
         if char == '\n' then
             if target then
-                print(f:read('*l'))
                 mulit_line = true
                 break
             else
@@ -22,6 +21,7 @@ function print_last(path)
     -- only 1 line
     if not mulit_line then
         f:seek('set', 0)
-        print(f:read('*l'))
     end
+
+    print(f:read('*l'))
 end
