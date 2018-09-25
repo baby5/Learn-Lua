@@ -6,7 +6,7 @@ function print_last_n(path, n)
     end
 
     local size = f:seek('end')    
-    local is_first = false
+    local is_first = true
     local target = false
 
     for i = size-1, 0, -1 do
@@ -15,7 +15,7 @@ function print_last_n(path, n)
         
         if char == '\n' then
             if target then
-                is_first = true
+                is_first = false
                 break
             else
                 n = n - 1
@@ -30,7 +30,7 @@ function print_last_n(path, n)
         print('no enough line to print')
     end
     
-    if not is_first then
+    if is_first then
         f:seek('set', 0)
     end
 
