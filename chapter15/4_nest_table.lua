@@ -18,11 +18,7 @@ function serialize(o, n)
     elseif t == "table" then
         io.write("{\n")
         
-        local indents = {}
-        for i = 1, n do
-           table.insert(indents, " ")
-        end
-        local indent = table.concat(indents, "") 
+        local indent = string.rep(" ", n)
       
         local done = {}
         for i, v in ipairs(o) do
@@ -44,8 +40,7 @@ function serialize(o, n)
             end
         end
         
-        table.remove(indents)
-        indent = table.concat(indents, "")
+        indent = string.rep(" ", n-1)
         local end_str = n == 1 and "}\n" or "}"
 
         io.write(indent, end_str)
