@@ -2,8 +2,8 @@ function serialize(o, n)
     n = not n and 1 or n
 
     local t = type(o)
-    if t == "number" then
-        io.write(o)
+    if t == "number" or t == "boolean" then
+        io.write(tostring(o))
     elseif t == "string" then
         io.write(string.format("%q", o))
     elseif t == "table" then
