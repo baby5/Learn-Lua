@@ -1,3 +1,11 @@
+function is_identifier(str)
+    if string.match(str, '^[a-zA-Z_][a-zA-Z0-9_]*') == str then
+        return true
+    else
+        return false
+    end
+end
+
 function basicSerialize (o, t)
     -- assume 'o' is a number or a string
     if t == 'number' then
@@ -22,7 +30,9 @@ function save (name, value, saved)
             saved[value] = name -- save name for next time
             io.write("{}\n") -- create a new table
             for k,v in pairs(value) do -- save its fields
-                k = basicSerialize(k, type(k))
+                if not is_identifier(k) then
+                    k = basicSerialize(k, type(k))
+                end
                 local fname = string.format("%s[%s]", name, k)
                 save(fname, v, saved)
             end
